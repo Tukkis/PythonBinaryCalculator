@@ -103,22 +103,12 @@ def binary_multiplication(num1, num2):
 
     calculation_matrix = []
 
-    for num2_index in range(len(reversed_num2)):
-        row_to_add = []
-        for num1_index in range(len(reversed_num1)): 
-            total = int(reversed_num2[num2_index]) +  int(reversed_num1[num1_index])
-            row_to_add.append(total // 2)
-        filler = [0] * num2_index 
-        filler.extend(row_to_add)
-        calculation_matrix.append(filler)
-
     summed_matrix = ['0']*(max_length+addition_rows)
 
-    for row_index, row in enumerate(calculation_matrix):
-        padding = (addition_rows - row_index)*[0]
-        row.extend(padding)
-        for column_index, column in enumerate(row):
-            summed_matrix[column_index] = str(int(summed_matrix[column_index]) + int(column))
+    for num2_index in range(len(reversed_num2)):
+        for num1_index in range(len(reversed_num1)): 
+            total = int(reversed_num2[num2_index]) +  int(reversed_num1[num1_index])
+            summed_matrix[num1_index + num2_index] = int(summed_matrix[num1_index + num2_index]) + total // 2
 
     carry_over = 0
 
